@@ -1,24 +1,30 @@
 {
 	"name": "orei-matrix",
-	"version": "1.0.0",
-	"api_version": "1.0.0",
-	"keywords": [ "HDMI Matrix" ],
-	"manufacturer": "OREI",
-	"product": "MATRIX EXTENDER",
-	"shortname": "MATRIX EXTENDER",
-	"description": "OREI HDMI MATRIX EXTENDER 4x4 or 8x8",
-	"main": "index.js",
+	"version": "1.4.0",
+	"main": "src/main.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"lint:raw": "eslint",
+		"lint": "yarn lint:raw .",
+		"format": "prettier -w .",
+		"package": "companion-module-build"
 	},
+	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-orei-matrix.git"
+		"url": "git+https://github.com/bitfocus/companion-module-your-module-name.git"
 	},
-	"author": "James Rankin <james@rankinfamily.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/bitfocus/companion-module-orei-matrix/issues"
+	"engines": {
+		"node": "^22.20",
+		"yarn": "^4"
 	},
-	"homepage": "https://github.com/bitfocus/companion-module-orei-matrix#readme"
+	"dependencies": {
+		"@companion-module/base": "~1.12.1"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "^2.6.1",
+		"eslint": "^9.39.2",
+		"prettier": "^3.8.1"
+	},
+	"prettier": "@companion-module/tools/.prettierrc.json",
+	"packageManager": "yarn@4.12.0"
 }

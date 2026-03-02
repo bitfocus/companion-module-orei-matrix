@@ -1,0 +1,27 @@
+{
+	"id": "orei-matrix",
+	"name": "OREI HDMI MATRIX EXTENDER",
+	"shortname": "orei-matrix",
+	"description": "OREI HDMI MATRIX EXTENDER 4x4 or 8x8",
+	"version": "1.4.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/bitfocus/companion-module-orei-matrix.git",
+	"bugs": "https://github.com/bitfocus/companion-module-orei-matrix/issues",
+	"maintainers": [
+		{
+			"name": "James Rankin",
+			"email": "james@rankinfamily.com"
+		}
+	],
+	"runtime": {
+		"type": "node22",
+		"api": "nodejs-ipc",
+		"apiVersion": "1.12.1",
+		"entrypoint": "../src/main.js",
+		"permissions": {}
+	},
+	"legacyIds": [],
+	"manufacturer": "Orei",
+	"products": ["HDMI MATRIX EXTENDER"],
+	"keywords": []
+}
