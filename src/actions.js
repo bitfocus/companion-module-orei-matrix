@@ -13,7 +13,7 @@ export function UpdateActions(self) {
 			],
 			callback: (action) => {
 				self.selectedInput = action.options.input
-				self.checkFeedbacks()
+				self.checkFeedbacks('Selected')
 			},
 		},
 		switch_output: {
@@ -30,7 +30,6 @@ export function UpdateActions(self) {
 			callback: (action) => {
 				self.sendCommand('s in ' + self.selectedInput + ' av out ' + action.options.output + '!')
 				self.updateRoute(action.options.output, self.selectedInput)
-				self.checkFeedbacks()
 			},
 		},
 		input_output: {
@@ -54,7 +53,6 @@ export function UpdateActions(self) {
 			callback: (action) => {
 				self.sendCommand('s in ' + action.options.input + ' av out ' + action.options.output + '!')
 				self.updateRoute(action.options.output, action.options.input)
-				self.checkFeedbacks()
 			},
 		},
 		all: {
@@ -85,7 +83,6 @@ export function UpdateActions(self) {
 						self.updateRoute(key, myInput)
 					}
 				}
-				self.checkFeedbacks()
 			},
 		},
 		preset: {
@@ -101,7 +98,6 @@ export function UpdateActions(self) {
 			],
 			callback: (action) => {
 				self.sendCommand('s recall preset ' + action.options.preset + '!')
-				self.checkFeedbacks()
 			},
 		},
 		save_preset: {
@@ -117,7 +113,6 @@ export function UpdateActions(self) {
 			],
 			callback: (action) => {
 				self.sendCommand('s save preset ' + action.options.preset + '!')
-				self.checkFeedbacks()
 			},
 		},
 		clear_preset: {
@@ -133,7 +128,6 @@ export function UpdateActions(self) {
 			],
 			callback: (action) => {
 				self.sendCommand('s clear preset ' + action.options.preset + '!')
-				self.checkFeedbacks()
 			},
 		},
 		cat_switch: {
@@ -161,7 +155,6 @@ export function UpdateActions(self) {
 						self.updateCAT(action.options.output, action.options.stateToggle) +
 						'!',
 				)
-				self.checkFeedbacks()
 			},
 		},
 		hdmi_switch: {
@@ -189,7 +182,6 @@ export function UpdateActions(self) {
 						self.updateHDMI(action.options.output, action.options.stateToggle) +
 						'!',
 				)
-				self.checkFeedbacks()
 			},
 		},
 		power: {
@@ -205,7 +197,6 @@ export function UpdateActions(self) {
 			],
 			callback: (action) => {
 				self.sendCommand('s power ' + action.options.power + '!')
-				self.checkFeedbacks()
 			},
 		},
 	}

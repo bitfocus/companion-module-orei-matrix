@@ -7,7 +7,7 @@ import { UpdateFeedbacks } from './feedbacks.js'
 import { UpdateVariableDefinitions } from './variables.js'
 import { UpdatePresetDefinitions } from './presets.js'
 
-class ModuleInstance extends InstanceBase {
+class OreiMatrixInstance extends InstanceBase {
 	constructor(internal) {
 		super(internal)
 
@@ -40,7 +40,7 @@ class ModuleInstance extends InstanceBase {
 
 		this.updateStatus(InstanceStatus.Ok)
 
-		// await this.configUpdated(this.config)
+		await this.configUpdated(this.config)
 
 		const DEFAULT_POLLING_INTERVAL = 750 // milliseconds
 		const DEFAULT_TELNET_PORT = 23
@@ -74,7 +74,7 @@ class ModuleInstance extends InstanceBase {
 
 		this.log('debug', 'destroy')
 	}
-	/*
+
 	async configUpdated(config) {
 		this.config = config
 		// polling is running and polling may have been de-selected by config change or tcp data changed
@@ -84,12 +84,11 @@ class ModuleInstance extends InstanceBase {
 		}
 		this.config = config
 
-		const DEFAULT_POLLING_INTERVAL = 750  // milliseconds
+		const DEFAULT_POLLING_INTERVAL = 750 // milliseconds
 		const DEFAULT_TELNET_PORT = 23
 
 		this.config.polling_interval = this.config.polling_interval ?? DEFAULT_POLLING_INTERVAL
 		this.config.port = this.config.port ?? DEFAULT_TELNET_PORT
-
 
 		this.initArrays(this.config.channels) // re-initialise data as number of channels could have changed
 		this.updateActions()
@@ -103,7 +102,7 @@ class ModuleInstance extends InstanceBase {
 		this.init_tcp()
 		this.initPolling()
 	}
-*/
+
 	// Return config fields for web config
 	getConfigFields() {
 		return [
@@ -249,7 +248,6 @@ class ModuleInstance extends InstanceBase {
 					}
 				}
 			}
-			this.checkFeedbacks()
 		}
 	}
 
@@ -303,6 +301,7 @@ class ModuleInstance extends InstanceBase {
 		varUpdate[`Output${output}`] = input
 		this.setVariableValues(varUpdate)
 		this.updateMatrixVariables()
+		this.checkFeedbacks('Output') // internal action or buttons may have been pressed directly on the hardware or a preset could be recalled
 	}
 
 	updateCAT(output, stateToggle) {
@@ -310,6 +309,7 @@ class ModuleInstance extends InstanceBase {
 			this.outputCAT[output] == 'disable' ? (stateToggle = 'enable') : (stateToggle = 'disable')
 		}
 		this.outputCAT[output] = stateToggle
+		this.checkFeedbacks('stateCAT') // internal action or buttons may have been pressed directly on the hardware or a preset could be recalled
 		return stateToggle == 'disable' ? '0' : '1'
 	}
 	updateHDMI(output, stateToggle) {
@@ -317,6 +317,7 @@ class ModuleInstance extends InstanceBase {
 			this.outputHDMI[output] == 'disable' ? (stateToggle = 'enable') : (stateToggle = 'disable')
 		}
 		this.outputHDMI[output] = stateToggle
+		this.checkFeedbacks('stateHDMI') // internal action or buttons may have been pressed directly on the hardware or a preset could be recalled
 		return stateToggle == 'disable' ? '0' : '1'
 	}
 
@@ -341,4 +342,4 @@ class ModuleInstance extends InstanceBase {
 	}
 }
 
-runEntrypoint(ModuleInstance, [])
+runEntrypoint(OreiMatrixInstance, [])
