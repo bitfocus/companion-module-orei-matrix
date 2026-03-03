@@ -1,6 +1,6 @@
 {
 	"name": "orei-matrix",
-	"version": "1.4.0",
+	"version": "2.1.0",
 	"main": "src/main.js",
 	"scripts": {
 		"lint:raw": "eslint",
