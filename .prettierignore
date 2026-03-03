@@ -1,2 +1,5 @@
 package.json
+pkg
 /LICENSE.md
+.pnp.cjs
+.pnp.loader.mjs
